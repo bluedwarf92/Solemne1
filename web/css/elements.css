@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 7, 2017, 2:52:05 PM
+    Author     : Cami
+*/
+
+#abc {
+width:100%;
+height:100%;
+opacity:.95;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#313131;
+overflow:auto
+}
+img#close {
+position:absolute;
+right:-14px;
+top:-14px;
+cursor:pointer
+}
+div#popupContact {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif
+}
+form#formNewUser {
+max-width:350px;
+min-width:250px;
+padding:10px 50px;
+border:2px solid gray;
+border-radius:10px;
+font-family:Helvetica;
+background-color:#fff;
+opacity:1.0;
+}
+
+form#formNewEmp {
+max-width:400px;
+min-width:250px;
+padding:10px 50px 20px 50px;
+border:2px solid gray;
+border-radius:10px;
+font-family:Helvetica;
+background-color:#fff;
+opacity:1.0;
+}
+
+
+div#popupContact {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif
+}
+
+h2#tituloPopup {
+background-color:#FEFFED;
+padding:20px 35px;
+margin:-10px -50px;
+text-align:center;
+border-radius:10px 10px 0 0
+}
+
+table#tableEmpleados{
+left:100px;
+}
