@@ -45,8 +45,7 @@ public class AddUsuarioServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
+            throws ServletException, IOException {     
     }
 
     /**
@@ -60,25 +59,26 @@ public class AddUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//       HttpSession sesion =request.getSession();
-//        String login=request.getParameter("txtLogin");
-//        String pass=request.getParameter("txtPass");
-//        int id_perfil=Integer.parseInt(request.getParameter("ddlPerfil"));
-//        if(!((id_perfil==0)||(pass==null)||(login==null))){
-//            Usuario objUsuario= new Usuario(login, pass, id_perfil);
-//            UsuarioBO objUsuarioBO= new UsuarioBO();
-//            if(objUsuarioBO.addUsuario(objUsuario)){
-//                sesion.setAttribute("exitoIngresoUsuario", "Usuario Correctamente Ingresado");
-//                response.sendRedirect("MantenedorUsuario.jsp");
-//            }else{
-//                sesion.setAttribute("error", "No se pudo ingresar la información.");
-//                response.sendRedirect("AgregarUsuario.jsp");
-//            }
-//                    
-//        }else{
-//            sesion.setAttribute("error1", "debe completar todos los campos");
-//            response.sendRedirect("AgregarUsuario.jsp");
-//        }  
+        HttpSession sesion =request.getSession();
+        String username =request.getParameter("newUsername");
+        String password =request.getParameter("newPass");
+        int id_empleado = Integer.parseInt(request.getParameter("ddlEmpleados"));
+        int id_perfil=Integer.parseInt(request.getParameter("newPerfil"));
+        if(!(password==null)||(username==null)){
+            Usuario objUsuario= new Usuario(0, username, password, id_perfil, id_empleado);
+            UsuarioBO objUsuarioBO= new UsuarioBO();
+            if(objUsuarioBO.addUsuario(objUsuario)){
+                sesion.setAttribute("exitoIngresoUsuario", "Usuario Correctamente Ingresado");
+                response.sendRedirect("MantenedorUsuarios.jsp");
+            }else{
+                sesion.setAttribute("error", "No se pudo ingresar la información.");
+                response.sendRedirect("MantenedorUsuarios.jsp");
+            }
+                    
+        }else{
+            sesion.setAttribute("error1", "debe completar todos los campos");
+            response.sendRedirect("MantenedorUsuarios.jsp");
+        }        
     }
 
     /**

@@ -27,11 +27,19 @@ public class EmpleadoBO {
         return this.objEmpleadoDAO.readElemento(id_empleado);
     }
     
+    public Empleado getEmpleadoRUT(String RUT){
+        return this.objEmpleadoDAO.readElementoXRut(RUT);
+    }
+    
     public boolean addEmpleado(Empleado objEmpleado){
         return this.objEmpleadoDAO.addElemento(objEmpleado);
     }
     
     public boolean deleteEmpleado(int id_empleado){
         return this.objEmpleadoDAO.deleteElemento(id_empleado);
+    }
+    
+     public boolean update(Empleado objEmpleado){
+        return this.objEmpleadoDAO.updateElemento(objEmpleado);
     }
 }

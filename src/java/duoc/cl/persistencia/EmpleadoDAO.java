@@ -121,5 +121,23 @@ public class EmpleadoDAO implements ICRUD {
         }
         return objEmpleado;
     }
+    
+    public Empleado readElementoXRut(String RUT) {
+        Empleado objEmpleado = null;
+        try {
+            Connection con = Conexion.getConexion();
+            String query = "select e.id_empleado,e.Nombre,e.Apellidos,e.Telefono,e.Direccion,e.RUT  from empleado e, usuario u where e.RUT = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, RUT);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Empleado objEmp = new Empleado(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6));
+                objEmpleado = objEmp;
+            }
+        } catch (Exception e) {
+            System.out.println("Problemas en la lectura " + e.getMessage());
+        }
+        return objEmpleado;
+    }
 
 }

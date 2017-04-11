@@ -41,7 +41,7 @@ public class GetAllEmpleadosServlet extends HttpServlet {
         HttpSession sesion= request.getSession();
         EmpleadoBO  objEmpleadoBO =new EmpleadoBO();
         List<Empleado>listadoEmpleado=objEmpleadoBO.getAllPerfil();
-        sesion.setAttribute("listadoEmpleado", listadoEmpleado);
+        sesion.setAttribute("listadoEmpleado", listadoEmpleado);       
     }
 
     /**

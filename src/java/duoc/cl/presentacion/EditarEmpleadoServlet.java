@@ -46,20 +46,15 @@ public class EditarEmpleadoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
-        int id = Integer.parseInt(request.getParameter("id_usuario"));
-        String rut = request.getParameter("txtRut");
-        String nombre = request.getParameter("txtNombre");
-        String apellidos = request.getParameter("txtApellidos");
-        int telefono = Integer.parseInt(request.getParameter("txtTelefono"));
-        String direccion = request.getParameter("txtDireccion");
+        int id = Integer.parseInt(request.getParameter("id_empleado"));     
         EmpleadoBO objEmpleadoBO = new EmpleadoBO();
         Empleado objEmpleado = objEmpleadoBO.getEmpleado(id);
         if (objEmpleado != null) {
             sesion.setAttribute("empleadoBuscado", objEmpleado);
-            response.sendRedirect("MantenedorEmpleado.jsp");
+            response.sendRedirect("MantenedorEmpleados.jsp");
         } else {
             sesion.setAttribute("error", "no se encontró el empleado");
-            response.sendRedirect("MantenedorEmpleado.jsp");
+            response.sendRedirect("MantenedorEmpleados.jsp");
         }
     }
 
@@ -74,7 +69,23 @@ public class EditarEmpleadoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession sesion=request.getSession();
+        int id_empleado=Integer.parseInt(request.getParameter("hdnId_empleado"));
+        String RUT=request.getParameter("modRUT");
+        String Nombre =request.getParameter("modNombre"); 
+        String Apellidos =request.getParameter("modApellido");
+        int telefono=Integer.parseInt(request.getParameter("modTelefono"));
+        String Direccion =request.getParameter("modDireccion");
+        Empleado objEmpleado= new Empleado(id_empleado, Nombre, Apellidos, telefono, Direccion, RUT);
+        EmpleadoBO objEmpleadoBO= new EmpleadoBO();
+        if(objEmpleadoBO.update(objEmpleado)){
+            sesion.removeAttribute("empleadoBuscado");
+            sesion.setAttribute("exitoIngresoEmpleado", "Empleado Actualizado Correctamente");
+            response.sendRedirect("MantenedorEmpleados.jsp");
+        }else{
+            sesion.setAttribute("error", "No se pudo updatear el empleado");
+            response.sendRedirect("MantenedorEmpleados.jsp");
+        }
     }
 
     /**

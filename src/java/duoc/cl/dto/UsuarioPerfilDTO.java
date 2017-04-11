@@ -18,17 +18,21 @@ public class UsuarioPerfilDTO implements Serializable {
     private String password;
     private int id_perfil;
     private String descripcion;
+    private int id_empleado;
+
+    
 
     public UsuarioPerfilDTO() {
     }
 
-    public UsuarioPerfilDTO(int id_usuario, String username, String password, int id_perfil, String descripcion) {
+    public UsuarioPerfilDTO(int id_usuario, String username, String password, int id_perfil, String descripcion, int id_empleado) {
         this.id_usuario = id_usuario;
         this.username = username;
         this.password = password;
         this.id_perfil = id_perfil;
         this.descripcion = descripcion;
-    }
+        this.id_empleado = id_empleado;
+    }    
 
     public int getId_usuario() {
         return id_usuario;
@@ -69,9 +73,19 @@ public class UsuarioPerfilDTO implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    public int getId_empleado() {
+        return id_empleado;
+    }
+
+    public void setId_empleado(int id_empleado) {
+        this.id_empleado = id_empleado;
+    }
 
     @Override
     public String toString() {
-        return "UsuarioPerfilDTO{" + "id_usuario=" + id_usuario + ", username=" + username + ", password=" + password + ", id_perfil=" + id_perfil + ", descripcion=" + descripcion + '}';
+        return "UsuarioPerfilDTO{" + "id_usuario=" + id_usuario + ", username=" + username + ", password=" + password + ", id_perfil=" + id_perfil + ", descripcion=" + descripcion + ", id_empleado=" + id_empleado + '}';
     }
+
+    
 }

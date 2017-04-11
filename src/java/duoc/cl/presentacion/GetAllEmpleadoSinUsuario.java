@@ -5,10 +5,13 @@
  */
 package duoc.cl.presentacion;
 
-import duoc.cl.entidades.Usuario;
+import duoc.cl.entidades.Empleado;
 import duoc.cl.negocio.UsuarioBO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Cami
  */
-@WebServlet(name = "EditarUsuarioServlet", urlPatterns = {"/editarUsuario"})
-public class EditarUsuarioServlet extends HttpServlet {
+@WebServlet(name = "GetAllEmpleadoSinUsuario", urlPatterns = {"/getAllEmpleadoSinUs"})
+public class GetAllEmpleadoSinUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,17 +49,11 @@ public class EditarUsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        int id = Integer.parseInt(request.getParameter("id_usuario"));     
-        UsuarioBO objUsuarioBO = new UsuarioBO();
-        Usuario objUsuario = objUsuarioBO.buscaUsuarioXcodigo(id);
-        if (objUsuario != null) {
-            sesion.setAttribute("usuarioBuscado", objUsuario);
-            response.sendRedirect("MantenedorUsuarios.jsp");
-        } else {
-            sesion.setAttribute("error", "no se encontró el empleado");
-            response.sendRedirect("MantenedorUsuarios.jsp");
-        }
+        HttpSession sesion= request.getSession();
+        UsuarioBO  objUsuarioBO =new UsuarioBO();
+        List <Empleado> listadoEmpleado=  new LinkedList();
+        listadoEmpleado=objUsuarioBO.getAllEmpleadoSinUsuario();        
+        sesion.setAttribute("listadoEmpleados", listadoEmpleado);     
     }
 
     /**
@@ -70,22 +67,7 @@ public class EditarUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      HttpSession sesion=request.getSession();
-        int id_usuario=Integer.parseInt(request.getParameter("hdnId_usuario"));
-        String username =request.getParameter("modUsername");
-        String password  =request.getParameter("modPassword");         
-        int id_perfil=Integer.parseInt(request.getParameter("modPerfil"));
-        int id_empleado = Integer.parseInt(request.getParameter("hdnId_empleado"));        
-        Usuario objUsuario= new Usuario(id_usuario, username, password, id_perfil, id_empleado);
-        UsuarioBO objUsuarioBO= new UsuarioBO();
-        if(objUsuarioBO.update(objUsuario)){
-            sesion.removeAttribute("usuarioBuscado");
-            sesion.setAttribute("exitoIngresoUsuario", "Usuario Actualizado Correctamente");
-            response.sendRedirect("MantenedorUsuarios.jsp");
-        }else{
-            sesion.setAttribute("error", "No se pudo updatear el usuario");
-            response.sendRedirect("MantenedorUsuarios.jsp");
-        }
+       
     }
 
     /**

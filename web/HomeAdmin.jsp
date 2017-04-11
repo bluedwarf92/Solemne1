@@ -37,11 +37,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="MantenedorUsuarios.jsp">Mantenedor Usuarios</a></li>
                             <li><a href="MantenedorEmpleados.jsp">Mantenedor Empleados</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="MantenedorObras.jsp">Mantenedor Obras</a></li>
+                            <li><a href="MantendorTipoObras.jsp">Mantenedor Tipo Obras</a></li>
                         </ul>
                     </li>
                     <li><a href="MantenedorUsuarios">Ver Reportes</a></li>

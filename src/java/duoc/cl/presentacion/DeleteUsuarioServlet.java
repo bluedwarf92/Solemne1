@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Cami
  */
-@WebServlet(name = "EditarUsuarioServlet", urlPatterns = {"/editarUsuario"})
-public class EditarUsuarioServlet extends HttpServlet {
+@WebServlet(name = "DeleteUsuarioServlet", urlPatterns = {"/deleteUsuario"})
+public class DeleteUsuarioServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,14 +47,14 @@ public class EditarUsuarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
-        int id = Integer.parseInt(request.getParameter("id_usuario"));     
+        int id = Integer.parseInt(request.getParameter("id_usuario"));
+        Usuario objUsuario = new Usuario();
         UsuarioBO objUsuarioBO = new UsuarioBO();
-        Usuario objUsuario = objUsuarioBO.buscaUsuarioXcodigo(id);
-        if (objUsuario != null) {
-            sesion.setAttribute("usuarioBuscado", objUsuario);
+        if (objUsuarioBO.deleteUsuario(id)) {
+            sesion.setAttribute("exitoIngresoUsuario", "Usuario correctamente eliminado!");
             response.sendRedirect("MantenedorUsuarios.jsp");
         } else {
-            sesion.setAttribute("error", "no se encontró el empleado");
+            sesion.setAttribute("error", "no se pudo eliminar el usuario");
             response.sendRedirect("MantenedorUsuarios.jsp");
         }
     }
@@ -70,22 +70,7 @@ public class EditarUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      HttpSession sesion=request.getSession();
-        int id_usuario=Integer.parseInt(request.getParameter("hdnId_usuario"));
-        String username =request.getParameter("modUsername");
-        String password  =request.getParameter("modPassword");         
-        int id_perfil=Integer.parseInt(request.getParameter("modPerfil"));
-        int id_empleado = Integer.parseInt(request.getParameter("hdnId_empleado"));        
-        Usuario objUsuario= new Usuario(id_usuario, username, password, id_perfil, id_empleado);
-        UsuarioBO objUsuarioBO= new UsuarioBO();
-        if(objUsuarioBO.update(objUsuario)){
-            sesion.removeAttribute("usuarioBuscado");
-            sesion.setAttribute("exitoIngresoUsuario", "Usuario Actualizado Correctamente");
-            response.sendRedirect("MantenedorUsuarios.jsp");
-        }else{
-            sesion.setAttribute("error", "No se pudo updatear el usuario");
-            response.sendRedirect("MantenedorUsuarios.jsp");
-        }
+       
     }
 
     /**

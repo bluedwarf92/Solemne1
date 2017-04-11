@@ -6,10 +6,12 @@
 package duoc.cl.persistencia;
 
 import duoc.cl.dto.UsuarioPerfilDTO;
+import duoc.cl.entidades.Empleado;
 import duoc.cl.entidades.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class UsuarioDAO implements ICRUD {
             ps.setString(1, objUsuario.getUsername());
             ps.setString(2, objUsuario.getPassword());
             ps.setInt(3, objUsuario.getId_perfil());
-            ps.setInt(3, objUsuario.getId_empleado());
+            ps.setInt(4, objUsuario.getId_empleado());
             try {
                 return ps.executeUpdate() == 1;
             } catch (Exception e) {
@@ -138,17 +140,60 @@ public class UsuarioDAO implements ICRUD {
         List<UsuarioPerfilDTO>listadoUsuario= new LinkedList<>();
         try{
             Connection con = Conexion.getConexion();
-            String query="SELECT USU.ID_USUARIO,USU.USERNAME,USU.PASSWORD,USU.ID_PERFIL,PER.DESCRIPCION FROM USUARIO USU,"
+            String query="SELECT USU.ID_USUARIO,USU.USERNAME,USU.PASSWORD,USU.ID_PERFIL,PER.DESCRIPCION,USU.ID_EMPLEADO FROM USUARIO USU,"
                     + " PERFIL PER WHERE PER.ID_PERFIL=USU.ID_PERFIL ;";
             PreparedStatement ps=con.prepareStatement(query);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                UsuarioPerfilDTO objUsuarioPerfilDTO= new UsuarioPerfilDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+                UsuarioPerfilDTO objUsuarioPerfilDTO= new UsuarioPerfilDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),rs.getInt(6));
                 listadoUsuario.add(objUsuarioPerfilDTO);
             }            
         }catch(Exception e){
             System.out.println("Problemas en la lectura "+e.getMessage());
         }
         return listadoUsuario;
+    }
+    
+    public List readEmpleadosSinUsuario() {
+        List<Empleado> listadoEmpleados = new LinkedList();
+        try {
+            Connection con = Conexion.getConexion();
+            String query = "select id_empleado,Nombre,Apellidos from empleado where id_empleado not in (select id_empleado from usuario);";
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Empleado objEmpleado = new Empleado();
+                objEmpleado.setId_empleado(rs.getInt(1));
+                objEmpleado.setNombre(rs.getString(2));
+                objEmpleado.setApellidos(rs.getString(3));
+                listadoEmpleados.add(objEmpleado);
+            }
+        } catch(Exception e) {
+            System.out.println("Problemas en la lectura " + e.getMessage());
+        }
+        return listadoEmpleados;
+    }
+    
+    public Usuario readUsuarioPorUsername(String username){
+         Usuario objUsuario1 = null;         
+        try {
+            Connection con = Conexion.getConexion();
+            String query = "select id_usuario,username,password,id_perfil,id_empleado from usuario where username=?;";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Usuario objUsuario = new Usuario();
+                objUsuario.setId_usuario(rs.getInt(1));
+                objUsuario.setUsername(rs.getString(2));
+                objUsuario.setPassword(rs.getString(3));
+                objUsuario.setId_perfil(rs.getInt(4));
+                objUsuario.setId_empleado(rs.getInt(5));   
+                objUsuario1 = objUsuario;
+            }
+        } catch(Exception e) {
+            System.out.println("Problemas en la lectura " + e.getMessage());
+        }
+        return objUsuario1;
     }
 }

@@ -20,11 +20,12 @@ public class Obra {
     private int valor_hora;
     private Date fecha_inicio;
     private Date fecha_fin;
+    private String descripcion;
 
     public Obra() {
     }
 
-    public Obra(int id_obra, int id_tipo_obra, String direccion, int id_comuna, int valor_hora, Date fecha_inicio, Date fecha_fin) {
+    public Obra(int id_obra, int id_tipo_obra, String direccion, int id_comuna, int valor_hora, Date fecha_inicio, Date fecha_fin, String descripcion) {
         this.id_obra = id_obra;
         this.id_tipo_obra = id_tipo_obra;
         this.direccion = direccion;
@@ -32,7 +33,9 @@ public class Obra {
         this.valor_hora = valor_hora;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
+        this.descripcion = descripcion;
     }
+    
 
     public int getId_obra() {
         return id_obra;
@@ -90,9 +93,19 @@ public class Obra {
         this.fecha_fin = fecha_fin;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "Obra{" + "id_obra=" + id_obra + ", id_tipo_obra=" + id_tipo_obra + ", direccion=" + direccion + ", id_comuna=" + id_comuna + ", valor_hora=" + valor_hora + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + '}';
+        return "Obra{" + "id_obra=" + id_obra + ", id_tipo_obra=" + id_tipo_obra + ", direccion=" + direccion + ", id_comuna=" + id_comuna + ", valor_hora=" + valor_hora + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", descripcion=" + descripcion + '}';
     }
+
+   
 
 }

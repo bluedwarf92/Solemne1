@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MantenedorUsuarios
-    Created on : Apr 7, 2017, 10:22:49 AM
+    Document   : MantenedorObras
+    Created on : Apr 11, 2017, 5:06:27 PM
     Author     : Cami
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,7 +18,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/my_js.js"></script>
-        <title>Mantenedor Empleados</title>
+        <title>Mantenedor Obras</title>
         <%-- Barra Navegacion --%>
     <nav class="navbar navbar-default">
         <div class="container-fluid">  
@@ -71,47 +71,49 @@
                 <%-- Jumbotron --%>
                 <div class="container">
                     <div class="jumbotron">
-                        <%--<form action="./buscarEmpleado" method="POST" > --%>
-                        <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mantenedor Usuarios</h1>
-                        <h2><small>Administra los Usuarios existentes en el sistema</small></h2>
-                        <p>Este mantenedor te permite modificar y agregar Usuarios, incluyendo sus caracteristicas y sus privilegios dentro del sistema.</p>
+                        <%--<form action="./buscarObra" method="POST" > --%>
+                        <h1><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Mantenedor Obras</h1>
+                        <h2><small>Administra las Obras existentes en el sistema</small></h2>
+                        <p>Este mantenedor te permite modificar y agregar Obras</p>
                         <button type="button" class="btn btn-success" id="popup" onclick="div_show();">Formulario Ingreso</button>
                         <%-- </form>--%>
                     </div>
                 </div>
                 <%-- Jumbotron FIN --%> 
                 <%--Inicio Tabla Mantenedor --%>
-                <jsp:include page="/getAllUsuarios" flush="true"/>
+                <jsp:include page="/getAllObras" flush="true"/>
                 <div class="container">
                     <%--<div class="jumbotron">--%>
                     <div class="panel-body">
                         <%-- Buscador Usuarios --%>
                         <div class="form-horizontal">
-                            <form class="form-inline" method="GET" action="./buscarUsuario">
+                            <form class="form-inline" method="GET" action="./buscarObra">
                                 <div class="form-group">
-                                    <label class="sr-only" for="txtBuscarUsuario">Username</label>
-                                    <input type="text" class="form-control" id="txtBuscarUsuario" name="txtBuscarUsuario" placeholder="Username">
+                                    <label class="sr-only" for="txtBuscarObra">Buscar Obra Por Capataz</label>
+                                    <input type="text" class="form-control" id="txtBuscarObra" name="txtBuscarObra" placeholder="Username">
                                 </div>                                    
                                 <button  type="submit" class="btn btn-default" >Buscar Usuario&nbsp;<span class="glyphicon glyphicon-search"></span></button>
                             </form>
                         </div>
                         <%-- Fin Buscador--%>
                         <br>
-                        <jsp:useBean id="usuario" class="duoc.cl.entidades.Usuario" scope="page"/>
+                        <jsp:useBean id="obra" class="duoc.cl.entidades.Obra" scope="page"/>
                         <table class="table table-hover tablesorter" id="tableUsuarios">
                             <thead>
                                 <tr>
-                                    <th>id usuario</th>
-                                    <th>Username</th>
-                                    <th>Password</th>
-                                    <th>Perfil</th>
-                                    <th>id Empleado</th>
+                                    <th>id Obra</th>
+                                    <th>Tipo Obra</th>
+                                    <th>Descripcion</th>
+                                    <th>Direccion</th>
+                                    <th>Valor Hora</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>                                    
                                 </tr>
                             </thead>
                             <tbody id="myTableBody">
-                                <c:forEach items="${listadoUsuario}" var="usuario">
+                                <c:forEach items="${listadoObras}" var="obra">
                                     <tr>                                       
                                         <td><c:out value="${usuario.id_usuario}" /></td>       
                                         <c:set var="username"><c:out value="${usuario.username}" /></c:set>

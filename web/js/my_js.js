@@ -16,7 +16,7 @@
                 $('#tableUsuarios').paging({limit:4});
             });   **/
             
-    function div_show() {
+function div_show() {
 document.getElementById('abc').style.display = "block";
 }
 //Function to Hide Popup
@@ -28,9 +28,9 @@ function check_pass() {
     if (document.getElementById('newPass').value ==
             document.getElementById('newPass2').value) {
         
-        document.getElementById('agregarUser').disabled = false;
+        document.getElementById('agregarUsuario').disabled = false;
     } else {
-        document.getElementById('agregarUser').disabled = true;
+        document.getElementById('agregarUsuario').disabled = true;
         document.getElementById('msjPassMatch').style.display = "block";
     }
 }

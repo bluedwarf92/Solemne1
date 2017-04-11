@@ -6,6 +6,7 @@
 package duoc.cl.negocio;
 
 import duoc.cl.dto.UsuarioPerfilDTO;
+import duoc.cl.entidades.Empleado;
 import duoc.cl.entidades.Usuario;
 import duoc.cl.persistencia.UsuarioDAO;
 import java.util.List;
@@ -47,5 +48,13 @@ public class UsuarioBO {
     
     public Usuario buscaUsuarioXcodigo(int codigo){
         return this.objUsuarioDAO.buscaUsuarioXcodigo(codigo);
+    }
+    
+    public List<Empleado> getAllEmpleadoSinUsuario(){
+        return this.objUsuarioDAO.readEmpleadosSinUsuario();
+    }
+
+    public Usuario getUsuarioXUsername(String username) {
+        return this.objUsuarioDAO.readUsuarioPorUsername(username);
     }
 }

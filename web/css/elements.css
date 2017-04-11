@@ -32,7 +32,7 @@ top:17%;
 margin-left:-202px;
 font-family:'Raleway',sans-serif
 }
-form#formNewUser {
+form#formNewUsuario {
 max-width:350px;
 min-width:250px;
 padding:10px 50px;
@@ -43,7 +43,7 @@ background-color:#fff;
 opacity:1.0;
 }
 
-form#formNewEmp {
+form#formNewUsuario,form#formEditEmp,form#formNewEmp,form#formEditUs {
 max-width:400px;
 min-width:250px;
 padding:10px 50px 20px 50px;
