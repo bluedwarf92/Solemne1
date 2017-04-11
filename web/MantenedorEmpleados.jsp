@@ -112,31 +112,35 @@
                             <tbody id="myTableBody">
                                 <c:forEach items="${listadoEmpleado}" var="empleado">
                                     <tr>
-                                        <td><c:out value="${empleado.id_empleado}"/></td>       
-                                        <c:set var="rut"><c:out value="${empleado.RUT}" /></c:set>
-                                        <td><input type="text" id="txtRut" name="txtRut" value="${rut}"  /></td>
-                                            <c:set var="nombre"><c:out value="${empleado.nombre}" /></c:set>
-                                        <td><input type="text" id="txtNombre" name="txtNombre" value="${nombre}"  /></td>
-                                            <c:set var="apellidos"><c:out value="${empleado.apellidos}" /></c:set>
-                                        <td><input type="text" id="txtApellidos" name="txtApellidos" value="${apellidos}"  /></td>
-                                            <c:set var="telefono"><c:out value="${empleado.telefono}" /></c:set>
-                                        <td><input type="text" id="txtTelefono" name="txtTelefono" value="${telefono}"  /></td>
-                                            <c:set var="direccion"><c:out value="${empleado.direccion}" /></c:set>
-                                        <td><input type="text" id="txtDirecion" name="txtDireccion" value="${direccion}"  /></td>   
-                                            <c:url var="editar" value="/editarEmpleado">
-                                                <c:param name="id_usuario" value="${empleado.id_empleado}"/>                                     
-                                                <%--   <c:param name="RUT" value="${param.txtRut}"/>
-                                                <c:param name="Nombre" value="${param.txtNombre}"/>
-                                                <c:param name="Apellidos" value="${param.txtApellidos}"/>
-                                                <c:param name="telefono" value="${param.txtTelefono}"/>
-                                                <c:param name="direccion" value="${param.txtDireccion}"/>   --%>                                             
-                                            </c:url>
-                                        <td><button type="submit" class="btn btn-xs btn-warning" onclick="window.location.href = '${editar}'" >Editar</button></td>                                            
-                                        <c:url var="eliminar" value="/deleteEmpleado">
-                                            <c:param name="id_usuario" value="${empleado.id_empleado}"/>                                      
+                                <form method="GET" action="./editarEmpleado">
+                                    <c:set var="id_empleado"><c:out value="${empleado.id_empleado}" /></c:set>
+                                    <input type="hidden" value="${id_empleado}">
+                                    <td><c:out value="${id_empleado}"/></td>       
+                                    <c:set var="rut"><c:out value="${empleado.RUT}" /></c:set>
+                                    <td><input type="text" id="txtRut" name="txtRut" value="${rut}"  /></td>
+                                        <c:set var="nombre"><c:out value="${empleado.nombre}" /></c:set>
+                                    <td><input type="text" id="txtNombre" name="txtNombre" value="${nombre}"  /></td>
+                                        <c:set var="apellidos"><c:out value="${empleado.apellidos}" /></c:set>
+                                    <td><input type="text" id="txtApellidos" name="txtApellidos" value="${apellidos}"  /></td>
+                                        <c:set var="telefono"><c:out value="${empleado.telefono}" /></c:set>
+                                    <td><input type="text" id="txtTelefono" name="txtTelefono" value="${telefono}"  /></td>
+                                        <c:set var="direccion"><c:out value="${empleado.direccion}" /></c:set>
+                                    <td><input type="text" id="txtDirecion" name="txtDireccion" value="${direccion}"  /></td>   
+                                        <c:url var="editar" value="/editarEmpleado">
+                                            <c:param name="id_usuario" value="${empleado.id_empleado}"/>                                     
+                                            <%--   <c:param name="RUT" value="${param.txtRut}"/>
+                                            <c:param name="Nombre" value="${param.txtNombre}"/>
+                                            <c:param name="Apellidos" value="${param.txtApellidos}"/>
+                                            <c:param name="telefono" value="${param.txtTelefono}"/>
+                                            <c:param name="direccion" value="${param.txtDireccion}"/>   --%>                                             
                                         </c:url>
-                                        <td><button type="button" class="btn btn-xs btn-danger" onclick="window.location.href = '${eliminar}'">Eliminar</button></td>
-                                    </tr>
+                                    <td><button type="submit" class="btn btn-xs btn-warning" onclick="window.location.href = '${editar}'" >Editar</button></td>                                            
+                                    <c:url var="eliminar" value="/deleteEmpleado">
+                                        <c:param name="id_usuario" value="${empleado.id_empleado}"/>                                      
+                                    </c:url>
+                                        <td><button type="submit" class="btn btn-xs btn-danger" onclick="window.location.href = '${eliminar}'">Eliminar</button></td>
+                                </form>    
+                                </tr>
                                 </c:forEach>
                             </tbody>
                         </table>

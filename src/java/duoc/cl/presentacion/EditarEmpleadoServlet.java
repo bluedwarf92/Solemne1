@@ -50,14 +50,14 @@ public class EditarEmpleadoServlet extends HttpServlet {
         String rut = request.getParameter("txtRut");
         String nombre = request.getParameter("txtNombre");
         String apellidos = request.getParameter("txtApellidos");
-        int telefono = Integer.parseInt(request.getParameter("txtTelefono"));    
-        String direccion = request.getParameter("txtDireccion");      
-        EmpleadoBO objEmpleadoBO= new EmpleadoBO();
-        Empleado objEmpleado =objEmpleadoBO.getEmpleado(id);
-        if(objEmpleado!=null){
+        int telefono = Integer.parseInt(request.getParameter("txtTelefono"));
+        String direccion = request.getParameter("txtDireccion");
+        EmpleadoBO objEmpleadoBO = new EmpleadoBO();
+        Empleado objEmpleado = objEmpleadoBO.getEmpleado(id);
+        if (objEmpleado != null) {
             sesion.setAttribute("empleadoBuscado", objEmpleado);
             response.sendRedirect("MantenedorEmpleado.jsp");
-        }else{
+        } else {
             sesion.setAttribute("error", "no se encontró el empleado");
             response.sendRedirect("MantenedorEmpleado.jsp");
         }
@@ -74,21 +74,7 @@ public class EditarEmpleadoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        HttpSession sesion=request.getSession();
-//        int id_usuario=Integer.parseInt(request.getParameter("hdnId_usuario"));
-//        String login=request.getParameter("txtLoginModifica");
-//        String pass=request.getParameter("txtPassModifica");        
-//        int id_perfil=Integer.parseInt(request.getParameter("ddlPerfilModifica"));
-//        Usuario objUsuario= new Usuario(id_usuario, login, pass, id_perfil);
-//        UsuarioBO objUsuarioBO= new UsuarioBO();
-//        if(objUsuarioBO.update(objUsuario)){
-//            sesion.removeAttribute("usuarioBuscado");
-//            sesion.setAttribute("exitoIngresoUsuario", "Usuario Actualizado Correctamente");
-//            response.sendRedirect("MantenedorUsuario.jsp");
-//        }else{
-//            sesion.setAttribute("error", "No se pudo updatear el usuario");
-//            response.sendRedirect("AgregarUsuario.jsp");
-//        }
+        
     }
 
     /**

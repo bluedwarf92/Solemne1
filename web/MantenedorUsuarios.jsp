@@ -84,6 +84,7 @@
                     <tbody>
                         <c:forEach items="${listadoUsuario}" var="usuario">
                             <tr>
+                                <form method="POST" id="formEmp">
                                 <td><c:out value="${usuario.username}"/></td>
                                 <c:set var="pass"><c:out value="${usuario.password}" /></c:set>
                                 <td><input type="password" value="${pass}"/> </td>
@@ -91,13 +92,15 @@
                                 <c:url var="editar" value="/editarUsuario">
                                     <c:param name="id_usuario" value="${usuario.id_usuario}"/>
                                 </c:url>
-                                <td><button type="button" class="btn btn-xs btn-warning" onclick="window.location.href = '${editar}'">Editar</button></td>                                            
+                                <td><button type="submit" class="btn btn-xs btn-warning" onclick="window.location.href = '${editar}'">Editar</button></td>                                            
                                 <c:url var="eliminar" value="/eliminaUsuario">
                                     <c:param name="id_usuario" value="${usuario.id_usuario}"/>
                                 </c:url>
-                                <td><button type="button" class="btn btn-xs btn-danger" onclick="window.location.href = '${eliminar}'">Eliminar</button></td>
+                                <td><button type="submit" class="btn btn-xs btn-danger" onclick="window.location.href = '${eliminar}'">Eliminar</button></td>
+                                </form>
                             </tr>
                         </c:forEach>
+                        
                     </tbody>
                 </table>
                 <%-- Fin Tabla Mantenedor --%>
