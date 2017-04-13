@@ -47,7 +47,7 @@ public class CiudadDAO implements ICRUD{
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Ciudad objCiudad = new Ciudad(rs.getInt(1), rs.getString(2));
+                Ciudad objCiudad = new Ciudad(rs.getInt(1), rs.getString(2),rs.getInt(3));
                 listadoCiudades.add(objCiudad);
             }
         } catch (Exception e) {

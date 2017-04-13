@@ -5,8 +5,8 @@
  */
 package duoc.cl.presentacion;
 
-import duoc.cl.entidades.Empleado;
-import duoc.cl.negocio.EmpleadoBO;
+import duoc.cl.entidades.Tipo_Obra;
+import duoc.cl.negocio.TipoObraBO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,12 +19,21 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Cami
+ * @author Mario
  */
-@WebServlet(name = "GetAllEmpleadosServlet", urlPatterns = {"/getAllEmpleados"})
-public class GetAllEmpleadosServlet extends HttpServlet {
+@WebServlet(name = "GetAllTipoObraServlet", urlPatterns = {"/getAllTipoObra"})
+public class GetAllTipoObraServlet extends HttpServlet {
 
-   
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -39,9 +48,10 @@ public class GetAllEmpleadosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion= request.getSession();
-        EmpleadoBO  objEmpleadoBO =new EmpleadoBO();
-        List<Empleado>listadoEmpleado=objEmpleadoBO.getAllEmpleados();
-        sesion.setAttribute("listadoEmpleado", listadoEmpleado);       
+        TipoObraBO objTipoObraBO = new TipoObraBO();
+        List<Tipo_Obra>listadoTipoObra=objTipoObraBO.getAllTipoObra();
+        sesion.setAttribute("listadoTipoObra", listadoTipoObra);
+        
     }
 
     /**
@@ -55,6 +65,7 @@ public class GetAllEmpleadosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
     }
 
     /**

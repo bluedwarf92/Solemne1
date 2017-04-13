@@ -38,7 +38,7 @@
                             <li><a href="MantenedorUsuarios.jsp">Mantenedor Usuarios</a></li>
                             <li><a href="MantenedorEmpleados.jsp">Mantenedor Empleados</a></li>
                             <li><a href="MantenedorObras.jsp">Mantenedor Obras</a></li>
-                            <li><a href="MantendorTipoObras.jsp">Mantenedor Tipo Obras</a></li>
+                            
                         </ul>
                     </li>
                     <li><a href="MantenedorUsuarios">Ver Reportes</a></li>

@@ -34,3 +34,4 @@ function check_pass() {
         document.getElementById('msjPassMatch').style.display = "block";
     }
 }
+

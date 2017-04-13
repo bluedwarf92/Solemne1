@@ -29,7 +29,7 @@
                 <input type="password" id="txtPassword" name="txtPassword"  class="form-control" placeholder="Password" required>
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Ingreso</button>
-                <button class="btn btn-lg btn-link" type="button">Registrarse</button>                
+                                
 
             </form>
             <c:if test="${error!=null}">

@@ -19,7 +19,7 @@ public class EmpleadoBO {
         this.objEmpleadoDAO = new EmpleadoDAO();
     }
 
-    public List<Empleado> getAllPerfil() {
+    public List<Empleado> getAllEmpleados() {
         return this.objEmpleadoDAO.readElementos();
     }
     

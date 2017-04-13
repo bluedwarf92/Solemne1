@@ -13,13 +13,15 @@ public class Ciudad {
 
     private int id_ciudad;
     private String nombre_ciudad;
+    private int id_region;
 
     public Ciudad() {
     }
 
-    public Ciudad(int id_ciudad, String nombre_ciudad) {
+    public Ciudad(int id_ciudad, String nombre_ciudad, int id_region) {
         this.id_ciudad = id_ciudad;
         this.nombre_ciudad = nombre_ciudad;
+        this.id_region = id_region;
     }
 
     public int getId_ciudad() {
@@ -38,8 +40,18 @@ public class Ciudad {
         this.nombre_ciudad = nombre_ciudad;
     }
 
+    public int getId_region() {
+        return id_region;
+    }
+
+    public void setId_region(int id_region) {
+        this.id_region = id_region;
+    }
+
     @Override
     public String toString() {
-        return "Ciudad{" + "id_ciudad=" + id_ciudad + ", nombre_ciudad=" + nombre_ciudad + '}';
+        return "Ciudad{" + "id_ciudad=" + id_ciudad + ", nombre_ciudad=" + nombre_ciudad + ", id_region=" + id_region + '}';
     }
+
+    
 }

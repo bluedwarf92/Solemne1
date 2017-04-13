@@ -17,7 +17,7 @@ public class Conexion {
             String driverClassName="com.mysql.jdbc.Driver";
             String driverUrl="jdbc:mysql://localhost/solemne1";
             Class.forName(driverClassName);
-            con= DriverManager.getConnection(driverUrl,"root","admin");
+            con= DriverManager.getConnection(driverUrl,"root","");
         }catch(Exception e){
             System.out.println(e.getMessage());
             throw new ConexionException("error al conectar la BD: "+e.getMessage());

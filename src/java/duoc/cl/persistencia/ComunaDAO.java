@@ -94,4 +94,22 @@ public class ComunaDAO implements ICRUD {
         return false;
     }
     
+    public Comuna getComunaxCodigo(int codigo){
+        Comuna objComuna1 = null;
+        try {
+            Connection con = Conexion.getConexion();
+            String query = "SELECT * FROM COMUNA where id_comuna=?;";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, codigo);           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Comuna objComuna = new Comuna(rs.getInt(1), rs.getString(2));
+                objComuna1 = objComuna;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la lectura de comunas: " + e.getMessage());
+        }
+        return objComuna1;
+    }
+    
 }
